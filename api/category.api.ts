@@ -6,7 +6,7 @@ export const CategoryAPI = {
   /**
   * @returns list of all categories
   */
-  async get() {
+  async getAll() {
   
     return await request<ICategory[]>("/category", "GET");
   },

@@ -1,12 +1,15 @@
 import { IProduct } from "@interfaces/IProduct";
 import { request } from "@utils/request";
 
-export async function getProducts() {
+export const ProductAPI = {
 
-  return await request<IProduct[]>("/product/all", "GET")
-}
-
-export async function getProduct(id: number) {
+  async getAll() {
   
-  return await request<IProduct>(`/product`, "POST", {id})
+    return await request<IProduct[]>("/product", "GET")
+  },
+  
+  async getOne(id: number) {
+    
+    return await request<IProduct>(`/product/${id}`, "GET")
+  }
 }
