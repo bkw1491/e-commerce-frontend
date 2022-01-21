@@ -66,7 +66,7 @@ export default function Sidebar() {
 
                 <nav className="mx-5 mt-5 flex flex-col gap-14">
 
-                  <Link href="/">
+                  <Link href="/product">
                     <a className="nav-link">
                       <p> 
                         New In 
