@@ -23,7 +23,10 @@
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
       "@interfaces/*": ["interfaces/*"],
+      "@store/*": ["store/*"],
       "@public/*": ["public/*"],
+      "@resources/*": ["resources/*"],
+      "@hooks/*": ["hooks/*"],
       "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
     }    
