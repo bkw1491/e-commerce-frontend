@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white w-full h-24">
+      <nav className="bg-white w-full h-24 fixed z-40">
 
         {/* Promo Banner */}
 

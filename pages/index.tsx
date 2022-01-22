@@ -9,11 +9,11 @@ export default function Home() {
 
   return (
 
-    <main className="bg-white relative md:h-[calc(100vh-8.5rem)]">
+    <main className="bg-white relative">
 
       {/* Mobile Layout */}
 
-      <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-8.5rem)] relative md:hidden">
+      <div className="h-screen relative md:hidden">
 
         <Image 
           src={LandingImage2.src}
