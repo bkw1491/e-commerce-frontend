@@ -110,12 +110,22 @@ export default function Home() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos aspernatur lorem.
           </p>
 
-          <Link href="/product">
+          <div className="col-start-5 col-end-8 row-start-5 flex flex-row justify-evenly items-center z-20">
 
-            <a className="btn-base bg-accent_1 hover:bg-accent_1_hover">
-              Shop Now
-            </a>
-          </Link>
+            <Link href="/category/men">
+
+              <a className="btn-base bg-accent_1 hover:bg-accent_1_hover">
+                Shop Men
+              </a>
+            </Link>
+
+            <Link href="/category/women">
+
+              <a className="btn-base bg-accent_2 hover:bg-accent_2_hover text-white">
+                Shop Women
+              </a>
+            </Link>
+        </div>
         </div>
       </section>
     </main>
