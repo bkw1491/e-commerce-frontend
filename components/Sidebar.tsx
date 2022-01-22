@@ -66,7 +66,7 @@ export default function Sidebar() {
 
                 <nav className="mx-5 mt-5 flex flex-col gap-14">
 
-                  <Link href="/product">
+                  <Link href="/category/new%in">
                     <a className="nav-link">
                       <p> 
                         New In 
@@ -74,19 +74,19 @@ export default function Sidebar() {
                     </a>
                   </Link>
 
-                  <Link href="/">
+                  <Link href="/category/women">
                     <a className="nav-link">
                       Women
                     </a>
                   </Link>
                   
-                  <Link href="/">
+                  <Link href="/category/men">
                     <a className="nav-link">
                       Men
                     </a>
                   </Link>
 
-                  <Link href="/">
+                  <Link href="/category/accessories">
                     <a className="nav-link">
                       Accessories
                     </a>
