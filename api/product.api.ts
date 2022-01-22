@@ -13,8 +13,8 @@ export const ProductAPI = {
     return await request<IProduct>(`/product/${id}`, "GET")
   },
 
-   async getByCategory(category_id: number) {
+   async getByCategory(categoryName: number) {
   
-    return await request<IProduct[]>(`/category/${category_id}`, "POST");
+    return await request<IProduct[]>(`/category/${categoryName}`, "POST");
   }
 }
