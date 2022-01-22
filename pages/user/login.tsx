@@ -6,6 +6,7 @@ import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { userLogin } from '@store/auth/actions';
 import { IUser } from '@interfaces/IUser';
+import { cartGet } from '@store/cart/actions';
 
 
 export default function Login() {
@@ -22,9 +23,14 @@ export default function Login() {
     const creds = Object.fromEntries(form.entries()) as 
       Omit<IUser, "id" | "confirm">;
     //event triggered by dispatch contains call to api
-    dispatch(userLogin(creds));
-    //navigate to home page if success
-    if(!error) { Router.push('/') }
+    //must await so have auth for getCart below
+    await dispatch(userLogin(creds));
+    //if success get the user's cart
+    if(!error) {
+      dispatch(cartGet());
+      //navigate to home page
+      Router.push('/');
+    }
   }
 
   return (
