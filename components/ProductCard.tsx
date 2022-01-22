@@ -4,9 +4,10 @@ import { IProduct } from "@interfaces/IProduct";
 import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { useAppDispatch } from "@hooks/useAppDispatch";
 import { cartAdd } from "@store/cart/actions";
+import { ICartItem } from "@interfaces/ICartItem";
 
 type ProductCardProps = {
-  product: IProduct
+  product: IProduct | ICartItem
 }
 
 
