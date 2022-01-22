@@ -110,7 +110,7 @@ export default function Home() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos aspernatur lorem.
           </p>
 
-          <Link href="/products">
+          <Link href="/product">
 
             <a className="btn-base bg-accent_1 hover:bg-accent_1_hover">
               Shop Now
