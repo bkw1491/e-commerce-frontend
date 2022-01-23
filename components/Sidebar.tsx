@@ -28,57 +28,52 @@ export default function Sidebar() {
       </Popover.Button>
 
       <SlideIn
-        direction="right">
+        appearFrom="left">
 
-        <div className="bg-white w-3/4 h-screen">
+        {/* toggles menu closed */}
 
-          {/* toggles menu closed */}
+        <Popover.Button className="p-3">
+          <XIcon className="nav-icon"/>
+        </Popover.Button>
 
-          <Popover.Button className="p-3">
-            <XIcon className="nav-icon"/>
-          </Popover.Button>
+        {/* nav links */}
 
-          {/* nav links */}
+        <nav className="mx-5 mt-5 flex flex-col gap-14">
 
-          <nav className="mx-5 mt-5 flex flex-col gap-14">
+          <Link href="/category/new%in">
+            <a className="nav-link">
+              <p> 
+                New In 
+              </p>
+            </a>
+          </Link>
 
-            <Link href="/category/new%in">
-              <a className="nav-link">
-                <p> 
-                  New In 
-                </p>
-              </a>
-            </Link>
+          <Link href="/category/women">
+            <a className="nav-link">
+              Women
+            </a>
+          </Link>
+          
+          <Link href="/category/men">
+            <a className="nav-link">
+              Men
+            </a>
+          </Link>
 
-            <Link href="/category/women">
-              <a className="nav-link">
-                Women
-              </a>
-            </Link>
-            
-            <Link href="/category/men">
-              <a className="nav-link">
-                Men
-              </a>
-            </Link>
+          <Link href="/category/accessories">
+            <a className="nav-link">
+              Accessories
+            </a>
+          </Link>
 
-            <Link href="/category/accessories">
-              <a className="nav-link">
-                Accessories
-              </a>
-            </Link>
+          {/* conditional on auth state */}
 
-            {/* conditional on auth state */}
-
-            {authed ? <a className="nav-link" onClick={handleLogout}>Logout</a>
-                    : <Link href={`/user/login`}>
-                        <a className="nav-link">Login</a>
-                      </Link>}        
-          </nav>
-        </div>
+          {authed ? <a className="nav-link" onClick={handleLogout}>Logout</a>
+                  : <Link href={`/user/login`}>
+                      <a className="nav-link">Login</a>
+                    </Link>}        
+        </nav>
       </SlideIn>
-
- 
     </Popover>
   )
 }
