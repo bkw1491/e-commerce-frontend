@@ -6,65 +6,72 @@ import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline'
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { userLogout } from '@store/auth/actions';
+import { useState } from 'react';
+
+//obj represents nav heirarchy for sidebar
+const nav = [
+  {key: "new", name: "New In", href: "/category/new-in"},
+  {key: "men", name: "Men", href: "/category/men"},
+  {key: "women", name: "Women", href: "/category/women"},
+  {key: "access", name: "Accessories", href: "/category/accessories"}
+]
 
 export default function Sidebar() {
-  //custom hooks are pre-typed
-  //ui shows login or my orders depending on state
+  //pre-typed, ui shows login or my orders depending on state
   const { authed } = useAppSelector(state => state.auth)
+  //local state to programatically close SlideIn
+  const [open, setOpen] = useState(false);
+  //need to dispatch logout event
+  //?? using jwt so surely a logout is pointless??
   const dispatch = useAppDispatch();
 
   function handleLogout() {
     dispatch(userLogout());
   }
 
+  function handleToggle() {
+    setOpen(!open)
+  }
+
   return (
 
     <Popover>
 
-      {/* Toggles Menu Open */}
+      {/* opens menu */}
 
       <Popover.Button>
-        <MenuAlt2Icon className="nav-icon"/>
+        <MenuAlt2Icon className="nav-icon" onClick={handleToggle}/>
       </Popover.Button>
 
       <SlideIn
+        open={open}
         appearFrom="left">
-
-        {/* toggles menu closed */}
-
-        <Popover.Button className="p-3">
-          <XIcon className="nav-icon"/>
-        </Popover.Button>
 
         {/* nav links */}
 
-        <nav className="mx-5 mt-5 flex flex-col gap-14">
+        <ul className="divide-y pr-20">
 
-          <Link href="/category/new%in">
-            <a className="nav-link">
-              <p> 
-                New In 
-              </p>
-            </a>
-          </Link>
+          {/* closes menu */}
 
-          <Link href="/category/women">
-            <a className="nav-link">
-              Women
-            </a>
-          </Link>
-          
-          <Link href="/category/men">
-            <a className="nav-link">
-              Men
-            </a>
-          </Link>
+          <li className="pb-10">
+            <Popover.Button>
+              <XIcon className="nav-icon" onClick={handleToggle}/>
+            </Popover.Button>
+          </li>
 
-          <Link href="/category/accessories">
-            <a className="nav-link">
-              Accessories
-            </a>
-          </Link>
+          {nav.map(node => {
+            return (
+              <li 
+                key={node.key} 
+                onClick={handleToggle}>
+
+                <Link href={node.href}>
+                  <a className="nav-link">{node.name}</a>
+                </Link>
+
+              </li>
+            )
+          })}
 
           {/* conditional on auth state */}
 
@@ -72,7 +79,7 @@ export default function Sidebar() {
                   : <Link href={`/user/login`}>
                       <a className="nav-link">Login</a>
                     </Link>}        
-        </nav>
+        </ul>
       </SlideIn>
     </Popover>
   )

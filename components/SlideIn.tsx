@@ -3,14 +3,15 @@ import { Fragment } from 'react';
 
 type FlyoutProps = {
   appearFrom: "left" | "right"
+  open: boolean
   children: React.ReactNode
 }
 
-function SlideIn({ appearFrom, children }: FlyoutProps) {
+function SlideIn({ appearFrom, children, open }: FlyoutProps) {
 
   return (
 
-    <Transition>
+    <Transition show={open}>
 
         {/* whole component fades in */}
 
