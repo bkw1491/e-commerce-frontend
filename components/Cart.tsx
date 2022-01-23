@@ -4,11 +4,18 @@ import SlideIn from '@components/SlideIn';
 import { Popover } from '@headlessui/react'
 import { ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
 import { useAppSelector } from '@hooks/useAppSelector';
+import { useState } from 'react';
 
 export default function Cart() {
   //this custom hook is pre-typed
   //ui needs to map cart items and show cart count on logo
-  const { cart } = useAppSelector(state => state.cart)
+  const { cart } = useAppSelector(state => state.cart);
+  //local state to programatically close SlideIn
+  const [open, setOpen] = useState(false);
+
+  function handleToggle() {
+    setOpen(!open);
+  }
 
   return (
 
@@ -17,7 +24,7 @@ export default function Cart() {
       {/* Toggles Menu Open */}
 
       <Popover.Button>
-        <div className="flex flex-row">
+        <div className="flex flex-row" onClick={handleToggle}>
 
           <ShoppingBagIcon className="nav-icon"/>
           <div className="cursor-pointer relative top-2 right-4 
@@ -29,6 +36,7 @@ export default function Cart() {
       </Popover.Button>
 
       <SlideIn
+        open={open}
         appearFrom="right">
 
         {/* Toggles Menu Closed */}
@@ -37,7 +45,7 @@ export default function Cart() {
 
           <h1 className="text-sm">Your Bag</h1>
           <Popover.Button>
-            <XIcon className="nav-icon"/>
+            <XIcon className="nav-icon" onClick={handleToggle}/>
           </Popover.Button>
         </div>
 
@@ -75,10 +83,18 @@ export default function Cart() {
             </span>
           </div>
 
-          <button className="btn-base min-w-full bg-accent_1 hover:bg-accent_1_hover">Checkout</button>
-            <span className="text-center">
-              Or <a className="text-accent_1 hover:text-accent_1_hover">Continue Shopping</a>
-            </span>
+          <button className="btn-base min-w-full bg-accent_1 hover:bg-accent_1_hover">
+            Checkout
+          </button>
+
+          <span className="text-center">
+            {"Or "} 
+            <a 
+              className="text-accent_1 hover:text-accent_1_hover"
+              onClick={handleToggle}>
+              Continue Shopping
+            </a>
+          </span>
         </div>       
       </SlideIn>      
     </Popover>

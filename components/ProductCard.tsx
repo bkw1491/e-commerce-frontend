@@ -22,9 +22,9 @@ export default function ProductCard({ product } : ProductCardProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full shadow-md p-1 h-[19rem]">
 
-      <div className="relative h-3/4 w-full p-1">
+      <div className="relative h-3/4 w-full p-2 drop-shadow-sm">
 
         <button 
           className="absolute top-3 right-3 bg-gray-50 rounded-full shadow-md p-2"
@@ -37,22 +37,29 @@ export default function ProductCard({ product } : ProductCardProps) {
 
         {/* Product Image */}
         
+        <div className="flex-shrink-1 overflow-hidden">
+
         <img
           src={product.image_url}
-          alt={product.image_alt}/>
+          alt={product.image_alt}
+          className="object-center object-cover"/>
+
+      </div>
 
 
         </div>
 
         {/* Product Name And Pricing */}
 
-        <div className="h-1/4 flex flex-col justify-between p-2">
+        <div className="h-1/4 flex flex-col justify-between px-2 py-1">
 
         <h2 className="text-sm text-gray-700">
           {product.name}
         </h2>
 
-        <h2>£{product.price}</h2>
+        <h2 className="text-sm text-gray-700 font-bold">
+          £{product.price}.00
+        </h2>
       </div>
     </div>
   )
