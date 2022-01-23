@@ -33,10 +33,10 @@ export default function Sidebar() {
 
         <Transition.Child
             as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
+            enter="transition-opacity duration-500"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
+            leave="transition-opacity duration-500"
             leaveFrom="opacity-100"
             leaveTo="opacity-0">
 
