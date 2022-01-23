@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import SlideIn from '@components/SlideIn';
 
-import { Popover, Transition } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import { MenuAlt2Icon, XIcon } from '@heroicons/react/outline'
-import { Fragment } from 'react';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { userLogout } from '@store/auth/actions';
@@ -27,83 +27,58 @@ export default function Sidebar() {
         <MenuAlt2Icon className="nav-icon"/>
       </Popover.Button>
 
-      <Transition>
+      <SlideIn
+        direction="right">
 
-        {/* Whole Component Fades In */}
+        <div className="bg-white w-3/4 h-screen">
 
-        <Transition.Child
-            as={Fragment}
-            enter="transition-opacity duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-500"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0">
+          {/* toggles menu closed */}
 
+          <Popover.Button className="p-3">
+            <XIcon className="nav-icon"/>
+          </Popover.Button>
 
-          <Popover.Panel className="absolute top-0 left-0 w-full h-screen bg-white bg-opacity-70 z-50">
+          {/* nav links */}
 
-            {/* Opaque Menu Slides In From Right */}
+          <nav className="mx-5 mt-5 flex flex-col gap-14">
 
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-500 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-500 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full">
+            <Link href="/category/new%in">
+              <a className="nav-link">
+                <p> 
+                  New In 
+                </p>
+              </a>
+            </Link>
 
-              <div className="bg-white w-3/4 h-screen">
+            <Link href="/category/women">
+              <a className="nav-link">
+                Women
+              </a>
+            </Link>
+            
+            <Link href="/category/men">
+              <a className="nav-link">
+                Men
+              </a>
+            </Link>
 
-                {/* Toggles Menu Closed */}
+            <Link href="/category/accessories">
+              <a className="nav-link">
+                Accessories
+              </a>
+            </Link>
 
-                <Popover.Button className="p-3">
-                  <XIcon className="nav-icon"/>
-                </Popover.Button>
+            {/* conditional on auth state */}
 
-                {/* Nav Links */}
+            {authed ? <a className="nav-link" onClick={handleLogout}>Logout</a>
+                    : <Link href={`/user/login`}>
+                        <a className="nav-link">Login</a>
+                      </Link>}        
+          </nav>
+        </div>
+      </SlideIn>
 
-                <nav className="mx-5 mt-5 flex flex-col gap-14">
-
-                  <Link href="/category/new%in">
-                    <a className="nav-link">
-                      <p> 
-                        New In 
-                      </p>
-                    </a>
-                  </Link>
-
-                  <Link href="/category/women">
-                    <a className="nav-link">
-                      Women
-                    </a>
-                  </Link>
-                  
-                  <Link href="/category/men">
-                    <a className="nav-link">
-                      Men
-                    </a>
-                  </Link>
-
-                  <Link href="/category/accessories">
-                    <a className="nav-link">
-                      Accessories
-                    </a>
-                  </Link>
-
-                  {/* Conditional Based On Auth State */}
-
-                  {authed ? <a className="nav-link" onClick={handleLogout}>Logout</a>
-                          : <Link href={`/user/login`}>
-                              <a className="nav-link">Login</a>
-                            </Link>}        
-                </nav>
-              </div>
-            </Transition.Child>
-          </Popover.Panel>
-        </Transition.Child>
-      </Transition>     
+ 
     </Popover>
   )
 }
