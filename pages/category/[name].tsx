@@ -1,4 +1,4 @@
-import ProductCard from "@components/Card";
+import ProductCard from "@components/ProductCard";
 
 import { CategoryAPI } from "@api/category.api";;
 import { ProductAPI } from "@api/product.api";

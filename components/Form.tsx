@@ -16,7 +16,7 @@ export default function Form({ type, error, submit }: FormProps) {
 
   return (
 
-    <div className="min-h-full flex items-center justify-center py-12 px-5 sm:px-6 lg:px-8">
+    <div className="absolute top-24 md:top-[8.5rem] w-full flex items-center justify-center py-12 px-5 sm:px-6 lg:px-8">
 
       <div className="max-w-md w-full space-y-8">
 
