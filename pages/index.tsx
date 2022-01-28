@@ -1,24 +1,22 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import ProductCard from '@components/ProductCard';
 import LayeredWaves from '@resources/layered-waves.png'
 import LandingImage from '@resources/landing-image-desktop.jpg';
-import TwitterLogo from '@resources/twitter-logo.png';
-import FacebookLogo from '@resources/fb-logo.png';
-import InstaLogo from '@resources/insta-logo.png';
-import RedditLogo from '@resources/reddit-logo.png';
-
-import { InferGetStaticPropsType } from 'next';
-import { ProductAPI } from '@api/product.api';
-
-export async function getStaticProps() {
-  const { error, data } = await ProductAPI.getByCategory("new in");
-  if(!error) {return {props: {newIn: data}}}
-  { return {props: {newIn: []}}}
-}
+import BrowseNewIn from '@resources/browse-newin.jpg';
+import BrowseWomen from '@resources/browse-women.jpg';
+import BrowseMen from '@resources/browse-men.jpg';
+import BrowseAcc from '@resources/browse-accessories.jpg';
 
 
-export default function Home({ newIn }: InferGetStaticPropsType<typeof getStaticProps>) {
+const quickLinks = [
+  {name: "New In", img: BrowseNewIn.src, alt: "browse new in"},
+  {name: "Women", img: BrowseWomen.src, alt: "browse women"},
+  {name: "Men", img: BrowseMen.src, alt: "browse men"},
+  {name: "Accessories", img: BrowseAcc.src, alt: "browse accessories"}
+]
+
+
+export default function Home() {
 
   return (
     <main>
@@ -26,11 +24,11 @@ export default function Home({ newIn }: InferGetStaticPropsType<typeof getStatic
 
         {/* Mobile Layout */}
 
-        <figure className="flex-shrink-1 overflow-hidden ">
+        <figure className="flex-shrink-0 overflow-hidden">
 
           <Image 
             src={LandingImage.src}
-            alt='man standing on cliff edge'
+            alt='women doing pushups'
             layout='fill'
             objectPosition="center"
             objectFit="cover"/>
@@ -38,7 +36,7 @@ export default function Home({ newIn }: InferGetStaticPropsType<typeof getStatic
 
         <section className="absolute top-44 left-16 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
 
-          <h2 className="text-2xl text-contrast my-2 lg:my-6 mx-5 lg:mx-0">
+          <h2 className="text-2xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
             Redefine
           </h2>
       
@@ -46,7 +44,7 @@ export default function Home({ newIn }: InferGetStaticPropsType<typeof getStatic
 
         <section className="absolute bottom-56 right-20 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
 
-          <h2 className="text-2xl text-contrast my-2 lg:my-6 mx-5 lg:mx-0">
+          <h2 className="text-2xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
             Your Limits
           </h2>
       
@@ -88,20 +86,23 @@ export default function Home({ newIn }: InferGetStaticPropsType<typeof getStatic
         </div>
       </section>
 
-      <section className="relative top-28 py-5">
-        <h1 className="text-center text-contrast text-xl font-semibold">
-          New In
-        </h1>
-      </section>
+      <section className="relative top-32 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-2">
 
-      <section className="relative top-28 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
-
-        {newIn.map(product => {
+        {quickLinks.map(link => {
           return (
 
-            <ProductCard
-              key={product.id}
-              product={product}/>
+            <Link key={link.name} 
+                  href={`/category/${link.name.toLowerCase()}`}>
+              <a className="relative w-full h-72">
+                <Image
+                  src={link.img}
+                  alt={link.alt}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"/>
+                <h3 className="relative top-[calc(50%-1rem)] text-contrast text-3xl text-center font-semibold">{link.name}</h3>
+              </a>
+            </Link>
 
           )
         })}
