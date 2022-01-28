@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 //obj represents nav heirarchy for sidebar
 const nav = [
-  {key: "new", name: "New In", href: "/category/new-in"},
+  {key: "new", name: "New In", href: "/category/new in"},
   {key: "men", name: "Men", href: "/category/men"},
   {key: "women", name: "Women", href: "/category/women"},
   {key: "access", name: "Accessories", href: "/category/accessories"}
@@ -66,7 +66,7 @@ export default function Sidebar() {
                 onClick={handleToggle}>
 
                 <Link href={node.href}>
-                  <a className="nav-link">{node.name}</a>
+                  <a className="nav-link py-8">{node.name}</a>
                 </Link>
 
               </li>
@@ -75,9 +75,9 @@ export default function Sidebar() {
 
           {/* conditional on auth state */}
 
-          {authed ? <a className="nav-link" onClick={handleLogout}>Logout</a>
+          {authed ? <a className="nav-link py-8" onClick={handleLogout}>Logout</a>
                   : <Link href={`/user/login`}>
-                      <a className="nav-link">Login</a>
+                      <a className="nav-link py-8">Login</a>
                     </Link>}        
         </ul>
       </SlideIn>

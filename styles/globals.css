@@ -5,19 +5,18 @@
 @layer utilities {
 
   .nav-icon {
+    color: #eff5f7;
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
   }
 
   .nav-icon:hover {
-    color: #00aea5
+    color: #cf667a
   }
 
   .nav-link {
-    color: rgb(55 65 81);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    color: #eff5f7;
     display: inline-block;
     position: relative;
   }
@@ -31,9 +30,15 @@
     top: 3.75rem;
     bottom: 0;
     left: 0;
-    background-color: #00aea5;
+    background-color: #cf667a;
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
+  }
+
+  @media (min-width: 768px) {
+    .nav-link:after {
+      top: 1.75rem;
+    }
   }
   
   .nav-link:hover:after {
@@ -50,4 +55,8 @@
     border-radius: 0.6rem;
     color: white;
   }
+}
+
+body {
+  background-color: #16202a;
 }

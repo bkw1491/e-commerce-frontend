@@ -28,7 +28,7 @@ export default function Cart() {
 
           <ShoppingBagIcon className="nav-icon"/>
           <div className="cursor-pointer relative top-2 right-4 
-            bg-accent_1 rounded-full text-xs text-white my-[0.4rem] px-[0.3rem]">
+            bg-accent rounded-full text-xs text-contrast my-[0.4rem] px-[0.3rem]">
             {cart.length}          
           </div>
 
@@ -43,7 +43,7 @@ export default function Cart() {
 
         <div className="flex flex-row flex-grow justify-between border-b-[1px] py-3">
 
-          <h1 className="text-sm">Your Bag</h1>
+          <h1 className="text-sm text-contrast">Your Bag</h1>
           <Popover.Button>
             <XIcon className="nav-icon" onClick={handleToggle}/>
           </Popover.Button>
@@ -54,7 +54,7 @@ export default function Cart() {
 
         {cart.length > 0 
 
-          ? <ul className="divide-y divide-gray-200">
+          ? <ul className="divide-y divide-contrast space-y-8">
             
               {cart.map(item => {
                 return (
@@ -67,7 +67,7 @@ export default function Cart() {
               })}
             </ul>
 
-          : <h2 className="py-5 text-2xl">
+          : <h2 className="py-5 text-2xl text-contrast">
               Your bag is currenty empty
             </h2>           
         }
@@ -77,20 +77,20 @@ export default function Cart() {
         <div className="flex flex-col gap-5">
 
           <div className="flex flex-row justify-between py-3 border-b-[1px]">
-            <h2 className="text-xl">Total</h2>
-            <span className="text-xl font-semibold">
+            <h2 className="text-xl text-contrast">Total</h2>
+            <span className="text-xl font-semibold text-contrast">
               £{cart.reduce((total, item) => total + item.price, 0)}
             </span>
           </div>
 
-          <button className="btn-base min-w-full bg-accent_1 hover:bg-accent_1_hover">
+          <button className="btn-base min-w-full bg-accent">
             Checkout
           </button>
 
-          <span className="text-center">
+          <span className="text-center text-contrast">
             {"Or "} 
             <a 
-              className="text-accent_1 hover:text-accent_1_hover"
+              className="text-accent"
               onClick={handleToggle}>
               Continue Shopping
             </a>

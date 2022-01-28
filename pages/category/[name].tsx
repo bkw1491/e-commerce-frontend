@@ -7,8 +7,11 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 export async function getStaticProps(context: GetStaticPropsContext) {
   //@ts-ignore
   const { data, error } = await ProductAPI.getByCategory(context.params.name);
-  console.log(data);
-  if(!error) { return { props: { products: data } }}
+
+  if(!error) { 
+    return { props: { products: data, category: context.params!.name } }
+  }
+
   return { props: { products: [] } }
 }
 
@@ -29,9 +32,9 @@ export async function getStaticPaths() {
 export default function ProductsByCategory({ products }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
-    <div className="absolute top-24 md:top-[8.5rem] w-full">
+    <div className="relative bg-darkest top-24 md:top-[8.5rem] w-full">
       
-      <section className="bg-gray-50 h-24 flex items-center justify-center">
+      <section className="text-contrast h-24 flex items-center justify-center">
         <h1 className="text-center text-xl font-semibold">
           Products
         </h1>

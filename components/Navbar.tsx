@@ -14,42 +14,70 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white w-full h-24 fixed z-40">
+      <nav className="bg-midtone w-full h-24 fixed z-40">
 
         {/* Promo Banner */}
 
-        <h2 className="h-[30%] bg-accent_1 text-white text-center">
+        <h2 className="h-[30%] bg-accent text-contrast text-center">
           Free shipping on orders over £50
         </h2>
 
-        <div className="h-[70%] flex flex-row items-center justify-between w-full">
+        <div className="h-[70%] w-full grid grid-cols-4 justify-center items-center lg:px-32">
 
           {/* Menu And Search */}
 
-          <div className="ml-3 flex flex-row gap-5">
-
-            {/* Sidebar Component Is Popover */}
+          <div className="col-start-1 ml-3 flex flex-row gap-5 lg:hidden">
 
             <Sidebar/>
             <SearchIcon className="nav-icon"/>
           </div>
 
-          {/* Logo */}
+          {/* text links, 768px MQ */}
 
-          <Link href="/">
-            <a className="w-12 h-12 relative cursor-pointer">
-              <Image 
-                src={logo.src}
-                alt="logo"
-                objectFit='cover'
-                layout="fill"
-                className="rounded-full"/>
-            </a>
-          </Link>
+          <div className="hidden col-start-2 col-end-4 lg:flex lg:flex-row items-center justify-between lg:gap-16">
+
+            <Link href="/">
+              <a className="nav-link">
+                New In 
+              </a>
+            </Link>
+
+            <Link href="/category/women">
+              <a className="nav-link">
+                Women
+              </a>
+            </Link>
+
+            {/* logo */}
+
+            <Link href="/">
+              <a className="w-12 h-12 relative cursor-pointer">
+                <Image 
+                  src={logo.src}
+                  alt="logo"
+                  objectFit='cover'
+                  layout="fill"/>
+              </a>
+            </Link>
+            
+            <Link href="/category/men">
+              <a className="nav-link">
+                Men
+              </a>
+            </Link>
+
+            <Link href="/category/accessories">
+              <a className="nav-link">
+                Accessories
+              </a>
+            </Link>
+
+          </div>
+
 
           {/* Account And Shopping Bag */}
 
-          <div className="flex flex-row gap-5">
+          <div className="col-start-4 justify-self-end flex flex-row gap-5">
 
             {/* Conditional On Auth State */}
 
@@ -60,42 +88,9 @@ export default function Navbar() {
             <Cart/>
 
           </div>
+
         </div>
-      </nav>
-
-      {/* Bottom Menus, 768px MQ */}
-
-      <nav className="hidden md:block md:w-full md:h-10 bg-white">
-
-        <div className="flex flex-row justify-evenly">
-
-          <Link href="/">
-            <a className="nav-link">
-              <p> 
-                New In 
-              </p>
-            </a>
-          </Link>
-
-          <Link href="/">
-            <a className="nav-link">
-              Women
-            </a>
-          </Link>
-          
-          <Link href="/">
-            <a className="nav-link">
-              Men
-            </a>
-          </Link>
-
-          <Link href="/">
-            <a className="nav-link">
-              Accessories
-            </a>
-          </Link>
-        </div>
-      </nav>
+      </nav>   
     </>
   )
 }

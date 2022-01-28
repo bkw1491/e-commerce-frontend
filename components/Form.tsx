@@ -2,8 +2,6 @@ import Link from 'next/link';
 import InputField from '@components/InputField'
 import React from 'react';
 
-import { useAppSelector } from '@hooks/useAppSelector';
-
 
 type FormProps = {
   type: "register" | "login"
@@ -16,17 +14,17 @@ export default function Form({ type, error, submit }: FormProps) {
 
   return (
 
-    <div className="absolute top-24 md:top-[8.5rem] w-full flex items-center justify-center py-12 px-5 sm:px-6 lg:px-8">
+    <div className="relative top-24 w-full flex items-center justify-center py-12 px-5 sm:px-6 lg:px-8">
 
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-12">
 
         {/* Title Section */}
 
         <section>
-          <h2 className="text-center text-4xl font-thin tracking-wide text-gray-900">
+          <h2 className="text-center text-4xl font-semibold tracking-wide text-contrast">
             {type === "login" ? "Login" : "Register"}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-accent">
             Or{' '}
 
             <Link href={`/user/${type === "login" ? "register" : "login"}`}>
@@ -72,7 +70,7 @@ export default function Form({ type, error, submit }: FormProps) {
 
           <button
             type="submit"
-            className="relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-accent_1 hover:bg-accent_1_hover">
+            className="relative w-full flex justify-center py-2 px-4 mt-10 border border-transparent text-sm font-medium rounded-md text-contrast bg-accent">
             Submit
           </button>
         </form>

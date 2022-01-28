@@ -11,10 +11,11 @@ module.exports = {
         sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        accent_1: "#00aea5",
-        accent_1_hover: "#a4fcf8",
-        accent_2: "#eaade5",
-        accent_2_hover: "#e6daef"
+        darkest: "#16202a",
+        darker: "#182734",
+        midtone: "#22303b",
+        contrast: "#eff5f7",
+        accent: "#cf667a",
       },
     },
   },

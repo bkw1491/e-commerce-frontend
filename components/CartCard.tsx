@@ -26,43 +26,43 @@ function CartCard({ item } : CartCardProps) {
 
   return (
 
-    <div className="h-48 flex flex-row gap-5 py-4">
+    <div className="h-40 flex flex-row gap-5 py-4">
 
-      <div className="flex-shrink-1 w-28 h-32 rounded-md overflow-hidden">
+      <div className="flex-shrink-0 w-24 h-32">
 
         <img
           src={item.image_url}
           alt={item.image_alt}
-          className="object-center object-cover"/>
+          className="w-full h-full object-center object-cover rounded-md"/>
 
       </div>
 
       {/* Name, Price, Quantity */}
 
-      <div className="flex flex-col flex-grow justify-evenly w-max">
+      <div className="flex flex-col flex-grow justify-between w-max">
 
-        <h1 className="text-gray-700">{item.name}</h1>
-        <h2 className="text-gray-500">£{item.price * qty} GBP</h2>
+        <h1 className="text-contrast">{item.name}</h1>
+        <h2 className="text-gray-300">£{item.price * qty} GBP</h2>
 
         <div className="flex flex-row justify-between">
 
           {/* Quantity Counter */}
 
-          <div className="flex flex-row border-[1px]">
+          <div className="bg-midtone border-gray-700 border-[1px] flex flex-row">
 
             <button>
               <PlusIcon 
-                className="w-10 h-10 p-3"
+                className="w-10 h-10 p-3 text-contrast"
                 onClick={() => setQty(qty + 1)}/>
             </button>
 
-            <span className="p-1 flex justify-center items-center text-sm">
+            <span className="p-1 flex justify-center items-center text-sm text-contrast">
               {qty}
             </span>
 
             <button>
               <MinusIcon 
-                className="w-10 h-10 p-3"
+                className="w-10 h-10 p-3 text-contrast"
                 onClick={() => setQty(qty - 1)}/>
             </button>
           </div>
@@ -71,7 +71,7 @@ function CartCard({ item } : CartCardProps) {
 
           <button
             onClick={handleRemove}>
-            <TrashIcon className="w-5 h-5 hover:text-red-500"/>
+            <TrashIcon className="w-5 h-5 text-contrast hover:text-accent"/>
           </button>
         </div>
 

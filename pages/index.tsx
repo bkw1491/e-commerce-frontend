@@ -1,134 +1,122 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import LandingImage from '@resources/landing-image.jpg'
-import LandingImage2 from '@resources/landing-image-2.jpg'
-import LandingImage3 from '@resources/landing-image-3.jpg'
+import ProductCard from '@components/ProductCard';
+import LayeredWaves from '@resources/layered-waves.png'
+import LandingImage from '@resources/landing-image-desktop.jpg';
+import TwitterLogo from '@resources/twitter-logo.png';
+import FacebookLogo from '@resources/fb-logo.png';
+import InstaLogo from '@resources/insta-logo.png';
+import RedditLogo from '@resources/reddit-logo.png';
+
+import { InferGetStaticPropsType } from 'next';
+import { ProductAPI } from '@api/product.api';
+
+export async function getStaticProps() {
+  const { error, data } = await ProductAPI.getByCategory("new in");
+  if(!error) {return {props: {newIn: data}}}
+  { return {props: {newIn: []}}}
+}
 
 
-export default function Home() {
+export default function Home({ newIn }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
+    <main>
+      <section className="flex justify-center relative top-24 h-[32rem]">
 
-    <main className="bg-white relative">
+        {/* Mobile Layout */}
 
-      {/* Mobile Layout */}
+        <figure className="flex-shrink-1 overflow-hidden ">
 
-      <div className="h-screen relative md:hidden">
-
-        <Image 
-          src={LandingImage2.src}
-          alt='man standing on cliff edge'
-          layout='fill'
-          objectFit="cover"/>
-      </div>
-
-      {/* Desktop Grid Mosaic Layout */}
-
-      <div className="hidden md:grid grid-cols-12 grid-rows-6 md:h-[calc(100vh-8.5rem)] relative bg-gradient-to-b from-gray-50 via-sky-50 to-sky-100">
-
-        {/* Image 1 */}
-
-        <div className="relative col-start-2 col-end-5 row-start-2 row-end-6 z-10">
-          
           <Image 
             src={LandingImage.src}
-            alt='woman standing on cliff edge'
-            layout='fill'
-            objectFit="cover"/>
-
-        </div>
-
-        {/* Image 2 */}
-
-        <div className="relative col-start-4 col-end-9 row-start-1 row-end-7 z-0 my-10">
-
-          <Image 
-            src={LandingImage2.src}
             alt='man standing on cliff edge'
-            layout="fill"
+            layout='fill'
+            objectPosition="center"
             objectFit="cover"/>
+        </figure>
 
-        </div>
+        <section className="absolute top-44 left-16 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
 
-        {/* Image 3 */}
+          <h2 className="text-2xl text-contrast my-2 lg:my-6 mx-5 lg:mx-0">
+            Redefine
+          </h2>
+      
+        </section>
 
-        <div className="relative col-start-8 col-end-12 row-start-2 row-end-5">
+        <section className="absolute bottom-56 right-20 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
+
+          <h2 className="text-2xl text-contrast my-2 lg:my-6 mx-5 lg:mx-0">
+            Your Limits
+          </h2>
+      
+        </section>
+
+        <figure className="absolute w-full h-60 -bottom-1 flex-shrink-1">
 
           <Image 
-            src={LandingImage3.src}
-            alt='woman climbing rock face'
+            src={LayeredWaves.src}
+            alt='man standing on cliff edge'
             layout='fill'
-            objectFit="cover"/>
+            objectPosition="center"
+            objectFit="fill"/>
+          </figure>
+      </section>
 
-        </div>
+      <section className="relative top-20 lg:top-40">
 
-        {/* Title */}
+        <h3 className="text-xl lg:text-2xl font-semibold py-4 lg:py-6 text-center text-contrast">
+          SERIOUS GEAR, FOR SERIOUS ATHLETES</h3>
 
-        <div className="col-start-3 col-end-10 row-start-3 row-end-5 bg-black bg-opacity-20 flex flex-col justify-evenly z-20">
+        <p className="text-center text-contrast lg:text-md py-4 lg:py-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit!
+        </p>
 
-          <h1 className="col-start-3 col-end-10 row-start-3 text-white text-6xl z-20 tracking-widest font-thin text-center">Made For Individuals</h1>
+        <div className="flex flex-row items-center justify-evenly pt-4">
 
-          <p className="col-start-3 col-end-10 row-start-4 text-white text-2xl text-center font-thin z-20">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos aspernatur lorem.
-          </p>
-
-        </div>
-
-        {/* CTA Buttons */}
-
-        <div className="col-start-5 col-end-8 row-start-5 flex flex-row justify-evenly items-center z-20">
-          <Link href="/products">
-
-            <a className="btn-base bg-accent_1 hover:bg-accent_1_hover">
-              Shop Men
+          <Link href="/category/women">
+            <a className="h-12 w-40 flex justify-center items-center  text-contrast rounded-md font-semibold bg-accent">
+              SHOP WOMEN
             </a>
           </Link>
 
-          <Link href="/products">
-
-            <a className="btn-base bg-accent_2 hover:bg-accent_2_hover text-white">
-              Shop Women
+          <Link href="/category/men">
+            <a className="h-12 w-40 flex justify-center items-center rounded-md text-contrast font-semibold bg-accent">
+              SHOP MEN
             </a>
           </Link>
-        </div>
-
-
-
-      </div>
-
-      <section className="absolute bottom-0 bg-black bg-opacity-20 md:hidden">
-
-        <div className="flex flex-col gap-8 my-6 ml-4 mr-8">
-
-          {/* Title Hook*/}
-
-          <h1 className="text-white text-2xl font-bold">
-            Made For Individuals
-          </h1>
-
-          <p className="text-white text-md font-thin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos aspernatur lorem.
-          </p>
-
-          <div className="col-start-5 col-end-8 row-start-5 flex flex-row justify-evenly items-center z-20">
-
-            <Link href="/category/men">
-
-              <a className="btn-base bg-accent_1 hover:bg-accent_1_hover">
-                Shop Men
-              </a>
-            </Link>
-
-            <Link href="/category/women">
-
-              <a className="btn-base bg-accent_2 hover:bg-accent_2_hover text-white">
-                Shop Women
-              </a>
-            </Link>
-        </div>
         </div>
       </section>
+
+      <section className="relative top-28 py-5">
+        <h1 className="text-center text-contrast text-xl font-semibold">
+          New In
+        </h1>
+      </section>
+
+      <section className="relative top-28 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
+
+        {newIn.map(product => {
+          return (
+
+            <ProductCard
+              key={product.id}
+              product={product}/>
+
+          )
+        })}
+
+      </section>
+
+      <footer className="relative top-40 pb-5 px-5">
+
+        <div className="border-t-[1px] border-t-contrast">
+          <p className="text-sm text-contrast text-center">&#169; 2022 | Warrior Athletics | Redefine Your Limits</p>
+        </div>
+
+      </footer>
     </main>
+
   )
 }
 

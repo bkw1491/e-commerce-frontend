@@ -26,7 +26,7 @@ function SlideIn({ appearFrom, children, open }: FlyoutProps) {
 
           {/* position depends on appearFrom */}
 
-          <Popover.Panel className={`absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} w-full min-h-screen overflow-y-scroll bg-white bg-opacity-70 z-50`}>
+          <Popover.Panel className={`absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} w-full min-h-screen overflow-y-scroll bg-darker bg-opacity-70 z-50`}>
 
             {/* opaque section slides in appearFrom side */}
 
@@ -44,7 +44,7 @@ function SlideIn({ appearFrom, children, open }: FlyoutProps) {
                 : "translate-x-full"}>
 
                   
-              <div className={`bg-white w-3/4 md:w-1/2 absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} min-h-screen p-3`}>
+              <div className={`bg-darker w-3/4 md:w-1/2 absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} min-h-screen p-3`}>
 
                 {children}
 
