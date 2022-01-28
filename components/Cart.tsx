@@ -21,7 +21,7 @@ export default function Cart() {
 
     <Popover>
 
-      {/* Toggles Menu Open */}
+      {/* toggles menu open */}
 
       <Popover.Button>
         <div className="flex flex-row" onClick={handleToggle}>
@@ -72,14 +72,14 @@ export default function Cart() {
             </h2>           
         }
 
-        {/* Total And CTA Buttons */}
+        {/* total and cta btns */}
 
         <div className="flex flex-col gap-5">
 
           <div className="flex flex-row justify-between py-3 border-b-[1px]">
             <h2 className="text-xl text-contrast">Total</h2>
             <span className="text-xl font-semibold text-contrast">
-              £{cart.reduce((total, item) => total + item.price, 0)}
+              £{cart.reduce((total, prev) => total + (prev.price * prev.quantity), 0)}
             </span>
           </div>
 

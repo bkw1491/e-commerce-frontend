@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useAppDispatch } from "@hooks/useAppDispatch";
 import { ICartItem } from "@interfaces/ICartItem";
@@ -11,17 +10,22 @@ type CartCardProps = {
 function CartCard({ item } : CartCardProps) {
   //pre-typed dispatch hook, needed to remove and update items
   const dispatch = useAppDispatch();
-  //local state to allow changing of item quantity
-  const [qty, setQty] = useState(item.quantity)
+
+  const {name, price, quantity, image_url, image_alt } = item;
 
 
   function handleRemove() {
-    dispatch(cartDelete(item.id))
+    dispatch(cartDelete(item.id));
   }
 
-  function handleUpdate() {
-    item.quantity = qty;
-    dispatch(cartUpdate(item));
+  function handleIncrement() {
+    if(quantity === 99){ return; }
+    dispatch(cartUpdate({...item, quantity: quantity + 1}));
+  }
+
+  function handleDecrement() {
+    if(quantity === 1){ return; }
+    dispatch(cartUpdate({...item, quantity: quantity - 1}));
   }
 
   return (
@@ -31,8 +35,8 @@ function CartCard({ item } : CartCardProps) {
       <div className="flex-shrink-0 w-24 h-32">
 
         <img
-          src={item.image_url}
-          alt={item.image_alt}
+          src={image_url}
+          alt={image_alt}
           className="w-full h-full object-center object-cover rounded-md"/>
 
       </div>
@@ -41,8 +45,8 @@ function CartCard({ item } : CartCardProps) {
 
       <div className="flex flex-col flex-grow justify-between w-max">
 
-        <h1 className="text-contrast">{item.name}</h1>
-        <h2 className="text-gray-300">£{item.price * qty} GBP</h2>
+        <h1 className="text-contrast">{name}</h1>
+        <h2 className="text-gray-300">£{price * quantity} GBP</h2>
 
         <div className="flex flex-row justify-between">
 
@@ -53,17 +57,17 @@ function CartCard({ item } : CartCardProps) {
             <button>
               <PlusIcon 
                 className="w-10 h-10 p-3 text-contrast"
-                onClick={() => setQty(qty + 1)}/>
+                onClick={handleIncrement}/>
             </button>
 
             <span className="p-1 flex justify-center items-center text-sm text-contrast">
-              {qty}
+              {item.quantity}
             </span>
 
             <button>
               <MinusIcon 
                 className="w-10 h-10 p-3 text-contrast"
-                onClick={() => setQty(qty - 1)}/>
+                onClick={handleDecrement}/>
             </button>
           </div>
 
