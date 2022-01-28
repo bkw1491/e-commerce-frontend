@@ -44,7 +44,7 @@ function SlideIn({ appearFrom, children, open }: FlyoutProps) {
                 : "translate-x-full"}>
 
                   
-              <div className={`bg-darker w-3/4 md:w-1/2 absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} min-h-screen p-3`}>
+              <div className={`bg-darker w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 absolute top-0 ${appearFrom === "right" ? "right-0" : "left-0"} min-h-screen p-3`}>
 
                 {children}
 

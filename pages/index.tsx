@@ -20,9 +20,7 @@ export default function Home() {
 
   return (
     <main>
-      <section className="flex justify-center relative top-24 h-[32rem]">
-
-        {/* Mobile Layout */}
+      <section className="flex justify-center relative top-24 h-[28rem] md:h-[32rem]">
 
         <figure className="flex-shrink-0 overflow-hidden">
 
@@ -34,23 +32,23 @@ export default function Home() {
             objectFit="cover"/>
         </figure>
 
-        <section className="absolute top-44 left-16 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
+        <section className="absolute top-36 md:top-36 left-16 md:left-1/4 lg:top-16 bg-midtone bg-opacity-30 lg:px-10">
 
-          <h2 className="text-2xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
-            Redefine
-          </h2>
-      
-        </section>
-
-        <section className="absolute bottom-56 right-20 lg:top-10 bg-midtone bg-opacity-20 lg:h-[25rem] lg:px-10">
-
-          <h2 className="text-2xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
+          <h2 className="text-2xl md:text-5xl lg:text-6xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
             Your Limits
           </h2>
       
         </section>
 
-        <figure className="absolute w-full h-60 -bottom-1 flex-shrink-1">
+        <section className="absolute bottom-48 right-20 md:right-1/4 lg:top-44 bg-midtone bg-opacity-30 lg:px-10">
+
+          <h2 className="text-2xl md:text-5xl lg:text-6xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
+            Redefined
+          </h2>
+      
+        </section>
+
+        <figure className="absolute w-full h-60 -bottom-1">
 
           <Image 
             src={LayeredWaves.src}
@@ -61,7 +59,7 @@ export default function Home() {
           </figure>
       </section>
 
-      <section className="relative top-20 lg:top-40">
+      <section className="relative top-28 md:top-28 lg:top-40">
 
         <h3 className="text-xl lg:text-2xl font-semibold py-4 lg:py-6 text-center text-contrast">
           SERIOUS GEAR, FOR SERIOUS ATHLETES</h3>
@@ -70,7 +68,7 @@ export default function Home() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit!
         </p>
 
-        <div className="flex flex-row items-center justify-evenly pt-4">
+        <div className="flex flex-row items-center justify-evenly md:justify-center md:gap-14 pt-4">
 
           <Link href="/category/women">
             <a className="h-12 w-40 flex justify-center items-center  text-contrast rounded-md font-semibold bg-accent">
@@ -86,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative top-32 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-2">
+      <section className="relative top-44 md:top-44 lg:top-64 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-2 md:px-8">
 
         {quickLinks.map(link => {
           return (
@@ -109,7 +107,7 @@ export default function Home() {
 
       </section>
 
-      <footer className="relative top-40 pb-5 px-5">
+      <footer className="relative top-56 md:top-64 lg:top-80 pb-5 px-5">
 
         <div className="border-t-[1px] border-t-contrast">
           <p className="text-sm text-contrast text-center">&#169; 2022 | Warrior Athletics | Redefine Your Limits</p>

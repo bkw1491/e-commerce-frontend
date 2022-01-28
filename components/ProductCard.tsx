@@ -22,7 +22,7 @@ export default function ProductCard({ product } : ProductCardProps) {
   }
 
   return (
-    <div className="w-full bg-midtone shadow-md shadow-darker p-1 h-[19rem]">
+    <div className="w-full bg-midtone rounded-md p-1 h-[19rem] lg:h-[27rem]">
 
       <div className="relative overflow-hidden h-3/4 w-full p-2">
 
@@ -37,12 +37,12 @@ export default function ProductCard({ product } : ProductCardProps) {
 
         {/* Product Image */}
         
-        <div className="flex-shrink-1 aspect-w-1 aspect-h-1">
+        <div className="flex-shrink-0 object-center object-contain">
 
         <img
           src={product.image_url}
           alt={product.image_alt}
-          className="w-full h-full object-center object-cover"/>
+          className="w-full h-full"/>
 
       </div>
 

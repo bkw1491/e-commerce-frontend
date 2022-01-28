@@ -5,6 +5,7 @@ import { ProductAPI } from "@api/product.api";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 
 export async function getStaticProps(context: GetStaticPropsContext) {
+  //TODO
   //@ts-ignore
   const { data, error } = await ProductAPI.getByCategory(context.params.name);
 
@@ -29,18 +30,18 @@ export async function getStaticPaths() {
   }
 }
 
-export default function ProductsByCategory({ products }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function ProductsByCategory({ products, category }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
-    <div className="relative bg-darkest top-24 md:top-[8.5rem] w-full">
+    <div className="relative bg-darkest top-24 w-full lg:px-6 xl:px-8">
       
-      <section className="text-contrast h-24 flex items-center justify-center">
+      <section className="text-contrast h-24 lg:h-44 flex items-center justify-center">
         <h1 className="text-center text-xl font-semibold">
-          Products
+          {(category as string).toUpperCase()}
         </h1>
       </section>
 
-      <section className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
+      <section className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6 xl:gap-8">
 
         {products.map(product => {
           return (

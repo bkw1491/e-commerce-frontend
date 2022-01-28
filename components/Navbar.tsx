@@ -22,14 +22,22 @@ export default function Navbar() {
           Free shipping on orders over £50
         </h2>
 
-        <div className="h-[70%] w-full grid grid-cols-4 justify-center items-center lg:px-32">
+        <div className="h-[70%] w-full grid grid-cols-4 justify-center items-center xl:px-32">
 
           {/* Menu And Search */}
 
-          <div className="col-start-1 ml-3 flex flex-row gap-5 lg:hidden">
+          <div className="col-start-1 ml-3 flex flex-row gap-5">
 
-            <Sidebar/>
-            <SearchIcon className="nav-icon"/>
+            <div className="lg:hidden">
+              <Sidebar/>
+            </div>
+
+            <div className="flex flex-row items-center">
+              <input 
+                type="text" 
+                className="border-transparent hidden lg:visible"/>
+              <SearchIcon className="nav-icon"/>
+            </div>
           </div>
 
           {/* text links, 768px MQ */}
