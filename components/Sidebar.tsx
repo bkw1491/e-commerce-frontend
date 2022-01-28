@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 //obj represents nav heirarchy for sidebar
 const nav = [
+  {key: "home", name: "Home", href: "/"},
   {key: "new", name: "New In", href: "/category/new in"},
   {key: "men", name: "Men", href: "/category/men"},
   {key: "women", name: "Women", href: "/category/women"},
@@ -21,13 +22,6 @@ export default function Sidebar() {
   const { authed } = useAppSelector(state => state.auth)
   //local state to programatically close SlideIn
   const [open, setOpen] = useState(false);
-  //need to dispatch logout event
-  //?? using jwt so surely a logout is pointless??
-  const dispatch = useAppDispatch();
-
-  function handleLogout() {
-    dispatch(userLogout());
-  }
 
   function handleToggle() {
     setOpen(!open)
@@ -75,10 +69,12 @@ export default function Sidebar() {
 
           {/* conditional on auth state */}
 
-          {authed ? <a className="nav-link py-8" onClick={handleLogout}>Logout</a>
-                  : <Link href={`/user/login`}>
-                      <a className="nav-link py-8">Login</a>
-                    </Link>}        
+          <Link href={authed ? "/user/myorders" : "/user/login"}>
+            <a className="nav-link py-8" onClick={handleToggle}>
+              {authed ? "My Orders" : "Login"}
+            </a>
+          </Link>
+
         </ul>
       </SlideIn>
     </Popover>
