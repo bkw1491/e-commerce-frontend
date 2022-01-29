@@ -8,7 +8,7 @@ export const ProductAPI = {
     return await request<IProduct[]>("/product", "GET")
   },
   
-  async getById(id: number) {
+  async getById(id: string) {
     
     return await request<IProduct>(`/product/${id}`, "GET")
   },
