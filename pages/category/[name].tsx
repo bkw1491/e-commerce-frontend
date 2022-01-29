@@ -5,20 +5,20 @@ import { ProductAPI } from "@api/product.api";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  //TODO
-  //@ts-ignore
-  const { data, error } = await ProductAPI.getByCategory(context.params.name);
-
-  if(!error) { 
-    return { props: { products: data, category: context.params!.name } }
-  }
-
-  return { props: { products: [] } }
+  //context.params should't be undef since we throw if can't getStaticPaths
+  const { data, error } = 
+    await ProductAPI.getByCategory(context.params!.name as string);
+  //don't want app to build if there's error getting this data
+  if(error) { throw new Error(error) }
+  //next expects obj returned in this format, can't simplify
+  return { props: { products: data, category: context.params!.name } }
 }
 
 export async function getStaticPaths() {
 
   const { data, error } = await CategoryAPI.getAll();
+  //this runs at build, don't want to build if can't get this data
+  if(error) { throw new Error(error); }
   //tell next how many paths it needs to generate
   const paths = data.map(category => {
     return { params: {name: category.name}}
