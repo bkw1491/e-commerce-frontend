@@ -1,17 +1,20 @@
 import React from "react";
+import Link from 'next/link';
 
 import { IProduct } from "@interfaces/IProduct";
 import { ShoppingBagIcon } from "@heroicons/react/outline";
 import { useAppDispatch } from "@hooks/useAppDispatch";
 import { cartAdd } from "@store/cart/actions";
-import { ICartItem } from "@interfaces/ICartItem";
+
 
 type ProductCardProps = {
-  product: IProduct | ICartItem
+  product: IProduct
 }
 
 
-export default function ProductCard({ product } : ProductCardProps) {
+export default function ProductCard(props : ProductCardProps) {
+
+  const { id, name, price, image_url, image_alt } = props.product
 
   const dispatch = useAppDispatch();
 
@@ -22,45 +25,48 @@ export default function ProductCard({ product } : ProductCardProps) {
   }
 
   return (
-    <div className="w-full bg-midtone rounded-md p-1 h-[19rem] lg:h-[27rem]">
+    <Link href={`/product/${id}`}>
 
-      <div className="relative overflow-hidden h-3/4 w-full p-2">
+      <a className="w-full bg-midtone rounded-md p-1 h-[19rem] lg:h-[27rem]">
 
-        <button 
-          className="absolute top-3 right-3 bg-midtone rounded-full shadow-midtone shadow-md p-2"
-          id={product.id.toString()}
-          onClick={handleAdd}>
+        <div className="relative overflow-hidden h-3/4 w-full p-2">
 
-          <ShoppingBagIcon className="w-5 h-5 text-contrast"/>
+          <button 
+            className="absolute top-3 right-3 bg-midtone rounded-full shadow-midtone shadow-md p-2"
+            id={id.toString()}
+            onClick={handleAdd}>
 
-        </button>
+            <ShoppingBagIcon className="w-5 h-5 text-contrast"/>
 
-        {/* Product Image */}
-        
-        <div className="flex-shrink-0 object-center object-contain">
+          </button>
 
-        <img
-          src={product.image_url}
-          alt={product.image_alt}
-          className="w-full h-full"/>
+          {/* Product Image */}
+          
+          <div className="flex-shrink-0 object-center object-contain">
 
-      </div>
-
+          <img
+            src={image_url}
+            alt={image_alt}
+            className="w-full h-full"/>
 
         </div>
 
-        {/* Product Name And Pricing */}
 
-        <div className="h-1/4 flex flex-col justify-between px-2 py-1">
+          </div>
 
-        <h2 className="text-sm text-contrast">
-          {product.name}
-        </h2>
+          {/* Product Name And Pricing */}
 
-        <h2 className="text-sm text-contrast font-bold">
-          £{product.price}.00
-        </h2>
-      </div>
-    </div>
+          <div className="h-1/4 flex flex-col justify-between px-2 py-1">
+
+          <h2 className="text-sm text-contrast">
+            {name}
+          </h2>
+
+          <h2 className="text-sm text-contrast font-bold">
+            £{price}.00
+          </h2>
+        </div>
+      </a>
+    </Link>
   )
 }
