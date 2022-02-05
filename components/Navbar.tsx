@@ -1,104 +1,53 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import logo from '@resources/logo.jpg';
-import Sidebar from './Sidebar';
-import Cart from './Cart';
+import Image from "next/image";
+import Link from "next/link";
+import logo from "@resources/logo.jpg";
+import Sidebar from "./Sidebar";
+import Cart from "./Cart";
 
-import { GiftIcon, SearchIcon, UserIcon } from '@heroicons/react/outline'
-import { useAppSelector } from '@hooks/useAppSelector';
+import { SearchIcon, UserIcon } from "@heroicons/react/outline";
 
 export default function Navbar() {
-  //this custom hook is pre-typed
-  //ui shows profile logo or orders logo depending on state
-  const { authed } = useAppSelector(state => state.auth)
+	return (
+		<>
+			<nav className="bg-midtone fixed z-40 h-24 w-full">
+				{/* Promo Banner */}
 
-  return (
-    <>
-      <nav className="bg-midtone w-full h-24 fixed z-40">
+				<h2 className="bg-accent text-contrast h-[30%] text-center">
+					Free shipping on orders over £50
+				</h2>
 
-        {/* Promo Banner */}
+				<div className="grid h-[70%] w-full grid-cols-4 items-center justify-center xl:px-32">
+					{/* Menu And Search */}
 
-        <h2 className="h-[30%] bg-accent text-contrast text-center">
-          Free shipping on orders over £50
-        </h2>
+					<div className="col-start-1 ml-3 flex flex-row gap-5">
+						<Sidebar />
 
-        <div className="h-[70%] w-full grid grid-cols-4 justify-center items-center xl:px-32">
+						<SearchIcon className="nav-icon" />
+					</div>
 
-          {/* Menu And Search */}
+					{/* logo */}
 
-          <div className="col-start-1 ml-3 flex flex-row gap-5">
+					<Link href="/">
+						<a className="relative col-start-2 col-end-4 h-12 w-12 cursor-pointer justify-self-center">
+							<Image
+								src={logo.src}
+								alt="logo"
+								objectFit="cover"
+								layout="fill"
+							/>
+						</a>
+					</Link>
 
-            <div className="lg:hidden">
-              <Sidebar/>
-            </div>
+					{/* Account And Shopping Bag */}
 
-            <div className="flex flex-row items-center">
-              <input 
-                type="text" 
-                className="border-transparent hidden lg:visible"/>
-              <SearchIcon className="nav-icon"/>
-            </div>
-          </div>
+					<div className="col-start-4 flex flex-row gap-5 justify-self-end">
+						<UserIcon className="nav-icon" />
 
-          {/* text links, 768px MQ */}
-
-          <div className="hidden col-start-2 col-end-4 lg:flex lg:flex-row items-center justify-between lg:gap-16">
-
-            <Link href="/">
-              <a className="nav-link">
-                New In 
-              </a>
-            </Link>
-
-            <Link href="/category/women">
-              <a className="nav-link">
-                Women
-              </a>
-            </Link>
-
-            {/* logo */}
-
-            <Link href="/">
-              <a className="w-12 h-12 relative cursor-pointer">
-                <Image 
-                  src={logo.src}
-                  alt="logo"
-                  objectFit='cover'
-                  layout="fill"/>
-              </a>
-            </Link>
-            
-            <Link href="/category/men">
-              <a className="nav-link">
-                Men
-              </a>
-            </Link>
-
-            <Link href="/category/accessories">
-              <a className="nav-link">
-                Accessories
-              </a>
-            </Link>
-
-          </div>
-
-
-          {/* Account And Shopping Bag */}
-
-          <div className="col-start-4 justify-self-end flex flex-row gap-5">
-
-            {/* Conditional On Auth State */}
-
-            {authed ? <GiftIcon className="nav-icon"/> 
-                    : <UserIcon className="nav-icon"/>}
-
-            {/* Cart Component Popover Button Is The Bag Icon With Badge */}
-            <Cart/>
-
-          </div>
-
-        </div>
-      </nav>   
-    </>
-  )
+						{/* Cart Component Popover Button Is The Bag Icon With Badge */}
+						<Cart />
+					</div>
+				</div>
+			</nav>
+		</>
+	);
 }

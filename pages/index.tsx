@@ -1,122 +1,116 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import LayeredWaves from '@resources/layered-waves.png'
-import LandingImage from '@resources/landing-image-desktop.jpg';
-import BrowseNewIn from '@resources/browse-newin.jpg';
-import BrowseWomen from '@resources/browse-women.jpg';
-import BrowseMen from '@resources/browse-men.jpg';
-import BrowseAcc from '@resources/browse-accessories.jpg';
-
+import Link from "next/link";
+import Image from "next/image";
+import LayeredWaves from "@resources/layered-waves.png";
+import LandingImage from "@resources/landing-image-desktop.jpg";
+import BrowseNewIn from "@resources/browse-newin.jpg";
+import BrowseWomen from "@resources/browse-women.jpg";
+import BrowseMen from "@resources/browse-men.jpg";
+import BrowseAcc from "@resources/browse-accessories.jpg";
 
 const quickLinks = [
-  {name: "New In", img: BrowseNewIn.src, alt: "browse new in"},
-  {name: "Women", img: BrowseWomen.src, alt: "browse women"},
-  {name: "Men", img: BrowseMen.src, alt: "browse men"},
-  {name: "Accessories", img: BrowseAcc.src, alt: "browse accessories"}
-]
-
+	{
+		name: "New In",
+		href: "/shop/Women/New In",
+		img: BrowseNewIn.src,
+		alt: "browse new in"
+	},
+	{
+		name: "Women",
+		href: "/shop/Women",
+		img: BrowseWomen.src,
+		alt: "browse women"
+	},
+	{ name: "Men", href: "/shop/Men", img: BrowseMen.src, alt: "browse men" },
+	{
+		name: "Accessories",
+		href: "/shop/Accessories",
+		img: BrowseAcc.src,
+		alt: "browse accessories"
+	}
+];
 
 export default function Home() {
+	return (
+		<main>
+			<section className="relative top-24 flex h-[28rem] justify-center md:h-[32rem] lg:h-[calc(100vh-6rem)]">
+				<figure className="flex-shrink-0 overflow-hidden">
+					<Image
+						src={LandingImage.src}
+						alt="women doing pushups"
+						layout="fill"
+						objectPosition="center"
+						objectFit="cover"
+					/>
+				</figure>
 
-  return (
-    <main>
-      <section className="flex justify-center relative top-24 h-[28rem] md:h-[32rem]">
+				<figure className="absolute -bottom-1 h-60 w-full">
+					<Image
+						src={LayeredWaves.src}
+						alt="svg waves"
+						layout="fill"
+						objectPosition="center"
+						objectFit="fill"
+					/>
+				</figure>
+			</section>
 
-        <figure className="flex-shrink-0 overflow-hidden">
+			<section className="relative top-20 space-y-5 py-4 px-5 md:top-28 md:px-20 lg:absolute lg:left-10 lg:h-3/4 lg:w-1/3 lg:space-y-10 lg:bg-black/30 lg:px-5 xl:space-y-20">
+				<h3 className="text-contrast text-md text-center font-light tracking-widest lg:py-6 lg:text-2xl">
+					Redefine Your Limits...
+				</h3>
 
-          <Image 
-            src={LandingImage.src}
-            alt='women doing pushups'
-            layout='fill'
-            objectPosition="center"
-            objectFit="cover"/>
-        </figure>
+				<h3 className="text-contrast text-center text-2xl font-thin tracking-widest lg:text-6xl">
+					Warrior Athletics
+				</h3>
 
-        <section className="absolute top-36 md:top-36 left-16 md:left-1/4 lg:top-16 bg-midtone bg-opacity-30 lg:px-10">
+				<p className="text-contrast lg:text-md font-light lg:py-6">
+					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+					ipsum, nobis repudiandae voluptates ut quibusdam quaerat. Aut
+				</p>
 
-          <h2 className="text-2xl md:text-5xl lg:text-6xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
-            Your Limits
-          </h2>
-      
-        </section>
+				<div className="flex flex-row items-center justify-between pt-4 md:justify-center md:gap-14">
+					<Link href="/shop/Women">
+						<a className="text-contrast bg-accent flex h-12 w-40  items-center justify-center rounded-md font-semibold lg:h-[3.5rem] lg:w-60">
+							SHOP WOMEN
+						</a>
+					</Link>
 
-        <section className="absolute bottom-48 right-20 md:right-1/4 lg:top-44 bg-midtone bg-opacity-30 lg:px-10">
+					<Link href="/shop/Men">
+						<a className="text-contrast bg-accent flex h-12 w-40 items-center justify-center rounded-md font-semibold lg:h-[3.5rem] lg:w-60">
+							SHOP MEN
+						</a>
+					</Link>
+				</div>
+			</section>
 
-          <h2 className="text-2xl md:text-5xl lg:text-6xl text-contrast font-semibold my-2 lg:my-6 mx-5 lg:mx-0">
-            Redefined
-          </h2>
-      
-        </section>
+			<section className="relative top-44 grid grid-cols-1 gap-8 px-2 md:top-44 md:grid-cols-2 md:px-8 lg:top-64 lg:grid-cols-4 xl:gap-x-8">
+				{quickLinks.map(link => {
+					return (
+						<Link key={link.name} href={link.href}>
+							<a className="relative h-72 w-full">
+								<Image
+									src={link.img}
+									alt={link.alt}
+									layout="fill"
+									objectFit="cover"
+									objectPosition="center"
+								/>
+								<h3 className="text-contrast relative top-[calc(50%-1rem)] text-center text-3xl font-semibold">
+									{link.name}
+								</h3>
+							</a>
+						</Link>
+					);
+				})}
+			</section>
 
-        <figure className="absolute w-full h-60 -bottom-1">
-
-          <Image 
-            src={LayeredWaves.src}
-            alt='man standing on cliff edge'
-            layout='fill'
-            objectPosition="center"
-            objectFit="fill"/>
-          </figure>
-      </section>
-
-      <section className="relative top-28 md:top-28 lg:top-40">
-
-        <h3 className="text-xl lg:text-2xl font-semibold py-4 lg:py-6 text-center text-contrast">
-          SERIOUS GEAR, FOR SERIOUS ATHLETES</h3>
-
-        <p className="text-center text-contrast lg:text-md py-4 lg:py-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit!
-        </p>
-
-        <div className="flex flex-row items-center justify-evenly md:justify-center md:gap-14 pt-4">
-
-          <Link href="/category/women">
-            <a className="h-12 w-40 flex justify-center items-center  text-contrast rounded-md font-semibold bg-accent">
-              SHOP WOMEN
-            </a>
-          </Link>
-
-          <Link href="/category/men">
-            <a className="h-12 w-40 flex justify-center items-center rounded-md text-contrast font-semibold bg-accent">
-              SHOP MEN
-            </a>
-          </Link>
-        </div>
-      </section>
-
-      <section className="relative top-44 md:top-44 lg:top-64 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 px-2 md:px-8">
-
-        {quickLinks.map(link => {
-          return (
-
-            <Link key={link.name} 
-                  href={`/category/${link.name.toLowerCase()}`}>
-              <a className="relative w-full h-72">
-                <Image
-                  src={link.img}
-                  alt={link.alt}
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"/>
-                <h3 className="relative top-[calc(50%-1rem)] text-contrast text-3xl text-center font-semibold">{link.name}</h3>
-              </a>
-            </Link>
-
-          )
-        })}
-
-      </section>
-
-      <footer className="relative top-56 md:top-64 lg:top-80 pb-5 px-5">
-
-        <div className="border-t-[1px] border-t-contrast">
-          <p className="text-sm text-contrast text-center">&#169; 2022 | Warrior Athletics | Redefine Your Limits</p>
-        </div>
-
-      </footer>
-    </main>
-
-  )
+			<footer className="relative top-56 px-5 pb-5 md:top-64 lg:top-80">
+				<div className="border-t-contrast border-t-[1px]">
+					<p className="text-contrast text-center text-sm">
+						&#169; 2022 | Warrior Athletics | Redefine Your Limits
+					</p>
+				</div>
+			</footer>
+		</main>
+	);
 }
-
-
