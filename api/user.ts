@@ -7,6 +7,10 @@ export const UserAPI = {
 	},
 
 	async authUser(user: Omit<IUser, "id" | "confirm">) {
-		return await API.request<string>("/user/auth", "POST", user);
+		return await API.request<string>("/user/auth/login", "POST", user);
+	},
+
+	async logoutUser() {
+		return await API.request<string>("/user/auth/logout", "POST");
 	}
 };

@@ -1,7 +1,13 @@
 import { ICartItem } from "@interfaces/ICartItem";
 import { createSlice } from "@reduxjs/toolkit";
 import { userLogout } from "@store/auth/actions";
-import { cartAdd, cartUpdate, cartDelete, cartGet } from "./actions";
+import {
+	cartAdd,
+	cartUpdate,
+	cartDelete,
+	cartGet,
+	cartCheckout
+} from "./actions";
 
 const initialState = {
 	cart: [] as ICartItem[]
@@ -16,7 +22,6 @@ export const cartSlice = createSlice({
 			//cart add success
 			.addCase(cartGet.fulfilled, (state, action) => {
 				state.cart = action.payload;
-				console.log(state.cart);
 			})
 			//cart add success
 			.addCase(cartAdd.fulfilled, (state, action) => {
@@ -30,8 +35,12 @@ export const cartSlice = createSlice({
 			.addCase(cartDelete.fulfilled, (state, action) => {
 				state.cart = action.payload;
 			})
+			//cart delete success
+			.addCase(cartCheckout.fulfilled, (state, action) => {
+				return state;
+			})
 			//logout
-			.addCase(userLogout, (state, action) => {
+			.addCase(userLogout.fulfilled, (state, action) => {
 				return initialState;
 			});
 	}

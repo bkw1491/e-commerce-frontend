@@ -48,7 +48,7 @@ export const authSlice = createSlice({
 				state.error = action.error.message!;
 			})
 			//logout
-			.addCase(userLogout, (state, action) => {
+			.addCase(userLogout.fulfilled, (state, action) => {
 				return initialState;
 			});
 	}

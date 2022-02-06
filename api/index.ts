@@ -1,4 +1,5 @@
 import { IServerResponse } from "@interfaces/IServerResponse";
+import Router from "next/router";
 
 const baseUrl = "https://ecommerce-restapi.herokuapp.com";
 
@@ -23,6 +24,7 @@ export const API = {
 
 		//parse result to json
 		const res = await fetch(endpoint, info);
+		if (res.status === 401) Router.push("/");
 		//return parsed json as generic server response obj
 		const json = (await res.json()) as IServerResponse<T>;
 		if (json.error) console.log(json.error);
