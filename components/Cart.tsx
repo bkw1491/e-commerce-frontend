@@ -21,6 +21,7 @@ export default function Cart() {
 	}
 
 	function handleCheckout() {
+		if (cart?.length === 0) return;
 		dispatch(cartCheckout());
 	}
 

@@ -55,7 +55,9 @@ export default function Sidebar() {
 	}
 
 	function handleLogout() {
-		dispatch(userLogout());
+		if (authed) {
+			dispatch(userLogout());
+		}
 		handleToggle();
 	}
 

@@ -32,6 +32,7 @@ export default function Login() {
 			"id" | "confirm"
 		>;
 
+		console.log(creds);
 		dispatch(userLogin(creds));
 	}
 
