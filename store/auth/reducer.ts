@@ -1,7 +1,5 @@
-import Router from "next/router";
-
 import { createSlice } from "@reduxjs/toolkit";
-import { userLogin, userRegister } from "./actions";
+import { userLogin, userLogout, userRegister } from "./actions";
 
 const initialState = {
 	authed: false,
@@ -23,9 +21,7 @@ export const authSlice = createSlice({
 			})
 			//register success
 			.addCase(userRegister.fulfilled, state => {
-				state.loading = false;
-				state.authed = false;
-				state.error = "";
+				return initialState;
 			})
 			//register failure
 			.addCase(userRegister.rejected, (state, action) => {
@@ -50,6 +46,10 @@ export const authSlice = createSlice({
 				state.loading = false;
 				state.authed = false;
 				state.error = action.error.message!;
+			})
+			//logout
+			.addCase(userLogout, (state, action) => {
+				return initialState;
 			});
 	}
 });

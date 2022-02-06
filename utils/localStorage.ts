@@ -22,3 +22,7 @@ export function loadFromLocalStorage() {
 		return undefined;
 	}
 }
+
+export function clearLocalStorage() {
+	localStorage.clear();
+}

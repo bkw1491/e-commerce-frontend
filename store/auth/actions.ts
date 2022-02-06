@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { UserAPI } from "@api/user";
 import { IUser } from "@interfaces/IUser";
 
@@ -19,3 +19,5 @@ export const userLogin = createAsyncThunk(
 		return data;
 	}
 );
+
+export const userLogout = createAction("app/logout");

@@ -7,6 +7,7 @@ import { useAppDispatch } from "@hooks/useAppDispatch";
 import { useAppSelector } from "@hooks/useAppSelector";
 import { userLogin } from "@store/auth/actions";
 import { IUser } from "@interfaces/IUser";
+import { cartGet } from "@store/cart/actions";
 
 export default function Login() {
 	//bring in pre-typed custom dispatch and selector hooks
@@ -14,8 +15,11 @@ export default function Login() {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		if (authed) Router.push("/");
-	}, [authed]);
+		if (authed) {
+			dispatch(cartGet());
+			Router.push("/");
+		}
+	}, [authed, dispatch]);
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		//stops page refeshing on submit

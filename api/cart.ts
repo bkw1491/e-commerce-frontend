@@ -19,6 +19,9 @@ export const CartAPI = {
 	},
 
 	async checkout() {
-		return await API.request<void>("/cart/checkout", "POST");
+		//credit: https://stackoverflow.com/questions/68630229/stripe-checkout-example-running-into-cors-error-from-localhost
+		const res = await API.request<string>("/cart/checkout", "POST");
+		//not sure if this is the best way
+		if (!res.error) window.location.href = res.data;
 	}
 };

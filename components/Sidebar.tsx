@@ -6,6 +6,8 @@ import { MenuAlt2Icon, XIcon } from "@heroicons/react/outline";
 import { useAppSelector } from "@hooks/useAppSelector";
 import { useState } from "react";
 import { classNames } from "@utils/classNames";
+import { useAppDispatch } from "@hooks/useAppDispatch";
+import { userLogout } from "@store/auth/actions";
 
 //obj represents nav heirarchy for sidebar
 const nav = [
@@ -44,11 +46,17 @@ const nav = [
 export default function Sidebar() {
 	//pre-typed, ui shows login or my orders depending on state
 	const { authed } = useAppSelector(state => state.auth);
+	const dispatch = useAppDispatch();
 	//local state to programatically close SlideIn
 	const [open, setOpen] = useState(false);
 
 	function handleToggle() {
 		setOpen(!open);
+	}
+
+	function handleLogout() {
+		dispatch(userLogout());
+		handleToggle();
 	}
 
 	return (
@@ -102,9 +110,9 @@ export default function Sidebar() {
 					</Tab.Group>
 				</div>
 
-				<Link href={authed ? "/user/myorders" : "/user/login"}>
-					<a className="nav-link py-8" onClick={handleToggle}>
-						{authed ? "My Orders" : "Login"}
+				<Link href={authed ? "/" : "/user/login"}>
+					<a className="nav-link py-8" onClick={handleLogout}>
+						{authed ? "Logout" : "Login"}
 					</a>
 				</Link>
 			</SlideIn>
