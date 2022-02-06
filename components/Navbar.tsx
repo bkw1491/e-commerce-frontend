@@ -21,8 +21,11 @@ export default function Navbar() {
 
 					<div className="col-start-1 ml-3 flex flex-row gap-5">
 						<Sidebar />
-
-						<SearchIcon className="nav-icon" />
+						<Link href="/shop/products/search">
+							<a>
+								<SearchIcon className="nav-icon" />
+							</a>
+						</Link>
 					</div>
 
 					{/* logo */}
