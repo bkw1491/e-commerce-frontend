@@ -5,8 +5,11 @@ import Sidebar from "./Sidebar";
 import Cart from "./Cart";
 
 import { SearchIcon, UserIcon } from "@heroicons/react/outline";
+import { useAppSelector } from "@hooks/useAppSelector";
 
 export default function Navbar() {
+	const { authed } = useAppSelector(state => state.auth);
+
 	return (
 		<>
 			<nav className="bg-midtone fixed z-40 h-24 w-full">
@@ -44,7 +47,7 @@ export default function Navbar() {
 					{/* Account And Shopping Bag */}
 
 					<div className="col-start-4 flex flex-row gap-5 justify-self-end">
-						<UserIcon className="nav-icon" />
+						{authed && <UserIcon className="nav-icon" />}
 
 						{/* Cart Component Popover Button Is The Bag Icon With Badge */}
 						<Cart />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Router from "next/router";
 import Form from "@components/Form";
 
@@ -12,10 +12,6 @@ export default function Register() {
 	//bring in pre-typed custom dispatch and selector hooks
 	const { error, authed } = useAppSelector(state => state.auth);
 	const dispatch = useAppDispatch();
-
-	useEffect(() => {
-		if (!authed) Router.push("/user/login");
-	}, [authed]);
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		//stops page refeshing on submit

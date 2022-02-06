@@ -1,3 +1,5 @@
+import Router from "next/router";
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { UserAPI } from "@api/user";
 import { IUser } from "@interfaces/IUser";
@@ -7,6 +9,7 @@ export const userRegister = createAsyncThunk(
 	async (creds: Omit<IUser, "id">) => {
 		const { data, error } = await UserAPI.registerUser(creds);
 		if (error) throw new Error(error); //rejects promise on thunk
+		Router.push("/user/login");
 		return data;
 	}
 );
