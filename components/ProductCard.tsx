@@ -22,7 +22,7 @@ export default function ProductCard(props: ProductCardProps) {
 
 	return (
 		<Link href={`/shop/products/${id}`}>
-			<a className="bg-midtone h-[19rem] w-full rounded-md p-1 md:h-[25rem] lg:h-[20rem]">
+			<a className="bg-midtone h-[19rem] w-full rounded-md p-1 md:h-[25rem] lg:h-[20rem] xl:h-[25rem]">
 				<div className="relative h-3/4 w-full overflow-hidden p-2">
 					<button
 						className="bg-midtone shadow-midtone absolute top-3 right-3 rounded-full p-2 shadow-md"
