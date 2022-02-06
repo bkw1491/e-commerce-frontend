@@ -1,4 +1,6 @@
-import { MinusIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
+import Incrementer from "@components/Incrementer";
+
+import { TrashIcon } from "@heroicons/react/outline";
 import { useAppDispatch } from "@hooks/useAppDispatch";
 import { ICartItem } from "@interfaces/ICartItem";
 import { cartDelete, cartUpdate } from "@store/cart/actions";
@@ -50,27 +52,11 @@ function CartCard({ item }: CartCardProps) {
 				<div className="flex flex-row justify-between">
 					{/* Quantity Counter */}
 
-					<div className="bg-midtone flex flex-row border-[1px] border-gray-700">
-						<button>
-							<PlusIcon
-								className="text-contrast h-10 w-10 p-3"
-								onClick={handleIncrement}
-							/>
-						</button>
-
-						<span className="text-contrast flex items-center justify-center p-1 text-sm">
-							{item.quantity}
-						</span>
-
-						<button>
-							<MinusIcon
-								className="text-contrast h-10 w-10 p-3"
-								onClick={handleDecrement}
-							/>
-						</button>
-					</div>
-
-					{/* Trash Icon */}
+					<Incrementer
+						increment={handleIncrement}
+						decrement={handleDecrement}
+						counter={quantity}
+					/>
 
 					<button onClick={handleRemove}>
 						<TrashIcon className="text-contrast hover:text-accent h-5 w-5" />

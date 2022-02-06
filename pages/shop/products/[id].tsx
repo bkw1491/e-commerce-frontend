@@ -1,11 +1,8 @@
-/**
- * Page for a specific product
- */
-
-import React, { useState } from "react";
+import React from "react";
 import Accordian from "@components/Accordian";
+import Incrementer from "@components/Incrementer";
 
-import { MinusIcon, PlusIcon } from "@heroicons/react/outline";
+import { useState } from "react";
 import { ShopAPI } from "@api/shop";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useAppDispatch } from "@hooks/useAppDispatch";
@@ -55,7 +52,6 @@ export default function Product(
 	function handleAddToBag(e: React.MouseEvent<HTMLButtonElement>) {
 		//stop page refresh
 		e.preventDefault();
-		//TODO some local state for quantity same as cart component
 		dispatch(cartAdd({ product_id: id, quantity: qty }));
 	}
 
@@ -95,25 +91,12 @@ export default function Product(
 						<p className="text-contrast text-3xl">£{price / 100}.00</p>
 
 						<div className="mt-5 flex flex-row items-center gap-5">
-							<div className="bg-midtone flex flex-row border-[1px] border-gray-700">
-								<button>
-									<PlusIcon
-										className="text-contrast h-10 w-10 p-3"
-										onClick={handleIncrement}
-									/>
-								</button>
+							<Incrementer
+								increment={handleIncrement}
+								decrement={handleDecrement}
+								counter={qty}
+							/>
 
-								<span className="text-contrast flex items-center justify-center p-1 text-sm">
-									{qty}
-								</span>
-
-								<button>
-									<MinusIcon
-										className="text-contrast h-10 w-10 p-3"
-										onClick={handleDecrement}
-									/>
-								</button>
-							</div>
 							<button
 								type="submit"
 								onClick={handleAddToBag}
