@@ -2,7 +2,6 @@ import React from "react";
 import ProductCard from "@components/ProductCard";
 
 import { useState } from "react";
-import { SearchIcon } from "@heroicons/react/solid";
 import { ShopAPI } from "@api/shop";
 import { IProduct } from "@interfaces/IProduct";
 import { useDebounce } from "@hooks/useDebounce";
@@ -35,17 +34,11 @@ export default function ProductsByName() {
 				/>
 			</form>
 
-			{results.length > 0 ? (
-				<section className="grid grid-cols-2 gap-2 px-1 md:grid-cols-3 md:px-5 lg:grid-cols-5 lg:gap-6 xl:grid-cols-6 xl:gap-10">
-					{results.map(product => {
-						return <ProductCard key={product.id} product={product} />;
-					})}
-				</section>
-			) : (
-				<h2 className="text-contrast text-center text-2xl">
-					No Products Found
-				</h2>
-			)}
+			<section className="grid grid-cols-2 gap-2 px-1 md:grid-cols-3 md:px-5 lg:grid-cols-5 lg:gap-6 xl:grid-cols-6 xl:gap-10">
+				{results.map(product => {
+					return <ProductCard key={product.id} product={product} />;
+				})}
+			</section>
 		</div>
 	);
 }

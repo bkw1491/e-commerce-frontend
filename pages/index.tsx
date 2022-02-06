@@ -64,8 +64,8 @@ export default function Home() {
 				</h3>
 
 				<p className="text-contrast lg:text-md font-light lg:py-6">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-					ipsum, nobis repudiandae voluptates ut quibusdam quaerat. Aut
+					The greatest athletes demand the best gear. Don&#39;t compromise on
+					function or style. Put our lastest gear to work today.
 				</p>
 
 				<div className="flex flex-row items-center justify-between pt-4 md:justify-center md:gap-14">
