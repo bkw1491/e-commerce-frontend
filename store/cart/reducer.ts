@@ -40,7 +40,7 @@ export const cartSlice = createSlice({
 				return state;
 			})
 			//logout
-			.addCase(userLogout.fulfilled, (state, action) => {
+			.addCase(userLogout, (state, action) => {
 				return initialState;
 			});
 	}

@@ -1,6 +1,6 @@
 import Router from "next/router";
 
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { UserAPI } from "@api/user";
 import { IUser } from "@interfaces/IUser";
 
@@ -23,9 +23,4 @@ export const userLogin = createAsyncThunk(
 	}
 );
 
-export const userLogout = createAsyncThunk("auth/logout", async () => {
-	console.log("logging out");
-	const { data, error } = await UserAPI.logoutUser();
-	if (error) throw new Error(error); //rejects promise on thunk
-	return data;
-});
+export const userLogout = createAction("auth/logout");
