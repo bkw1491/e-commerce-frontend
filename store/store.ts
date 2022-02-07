@@ -9,12 +9,21 @@ const rootReducer = combineReducers({
 });
 
 //intializes redux store
+//attempt to load existing state from local storage
 export const store = configureStore({
 	reducer: rootReducer,
 	preloadedState: loadFromLocalStorage()
 });
 
-store.subscribe(() => saveToLocalStorage(store.getState()));
+//fires on any change to the store
+store.subscribe(() => {
+	const state = store.getState();
+	//if user logged out, and saved state exists, remove
+	if (!state.auth.authed && localStorage.getItem("appState"))
+		localStorage.removeItem("appState");
+	//if user logged in, save localState to storage
+	if (state.auth.authed) saveToLocalStorage(state);
+});
 
 //infer`types from store
 export type RootState = ReturnType<typeof rootReducer>;
