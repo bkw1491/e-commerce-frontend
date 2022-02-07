@@ -1,5 +1,3 @@
-import Router from "next/router";
-
 import { createSlice } from "@reduxjs/toolkit";
 import { userLogin, userLogout, userRegister } from "./actions";
 
